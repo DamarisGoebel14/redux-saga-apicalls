@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import {useDispatch, useSelector} from "react-redux";
+import {getUsersFetch} from "./action";
+import {getPostsFetch} from "./action";
+import {createPostFetch} from "./action";
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const dispatch = useDispatch();
+    const users = useSelector(state => state.myFirstReducer.users);
+    const posts = useSelector(state => state.postReducer.posts)
+
+    return (
+        <div>
+            <h1>Hello</h1>
+            <button onClick={() => dispatch(getUsersFetch())}>Fetch Users</button>
+            <button onClick={() => dispatch(getPostsFetch())}>Fetch Posts</button>
+            <button onClick={() => dispatch(createPostFetch())}>Create Post</button>
+            <div>Users: {users.map((user) => (<div key={user.id}>{user.name}</div>))}</div>
+            <div>Posts: {posts.map((post) => (<div key={post.id}>{post.title}</div>))} </div>
+        </div>
+    );
 }
+
 
 export default App;
