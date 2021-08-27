@@ -8,13 +8,9 @@ import {
     GET_USERS_SUCCESS
 } from "./action";
 
-// call api call / put call an action
-//api function
-function usersFetch() {
-    return fetch('https://jsonplaceholder.typicode.com/users')
-        .then(response => response.json());
-}
+import {usersFetch, createPostFetch, postsFetch} from "./api";
 
+// call api call / put call an action
 
 function* workGetUsersFetch() {
     const users =  yield call(usersFetch);
@@ -22,11 +18,6 @@ function* workGetUsersFetch() {
 }
 
 // posts
-function postsFetch() {
-    return fetch('https://jsonplaceholder.typicode.com/posts')
-        .then(response => response.json());
-}
-
 
 function* workGetPostsFetch() {
     const posts =  yield call(postsFetch);
@@ -35,24 +26,13 @@ function* workGetPostsFetch() {
 
 // create post
 
-function createPostFetch() {
-
-    let post = {
-        "userId": 1,
-        "title": "helloTitle",
-        "body": "helloBody"
-    }
-    return fetch('https://jsonplaceholder.typicode.com/posts', {method: "POST", headers: {'Content-type': 'application/json; charset=UTF-8'}, body: JSON.stringify(post)})
-        .then((response) => response.json())
-        .then((json) => console.log(json))
-
-}
-
-
 function* workCreatePostFetch() {
     const post =  yield call(createPostFetch);
+
     yield put({type: CREATE_POST_SUCCESS, post})
 }
+
+
 
 
 

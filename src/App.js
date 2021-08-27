@@ -9,6 +9,7 @@ function App() {
     const users = useSelector(state => state.myFirstReducer.users);
     const posts = useSelector(state => state.postReducer.posts)
 
+
     return (
         <div>
             <h1>Hello</h1>

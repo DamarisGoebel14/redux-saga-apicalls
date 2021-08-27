@@ -17,7 +17,19 @@ export const getPostsFetch = () => ({
 
 export const CREATE_POST_FETCH = "CREATE_POST"
 export const CREATE_POST_SUCCESS = "CREATE_POST_SUCCESS"
+export const CREATE_POST_FAILED = "CREATE_POST_FAILED"
 
-export const createPostFetch = () => ({
-    type: CREATE_POST_FETCH
+export const createPostFetch = (payload) => ({
+    type: CREATE_POST_FETCH,
+    payload
 })
+
+export const createPostSuccess = (payload) => ({
+    type: CREATE_POST_SUCCESS,
+    payload,
+});
+
+export const createPostFailed = (payload) => ({
+    type: CREATE_POST_FAILED,
+    payload,
+});
